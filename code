@@ -1,0 +1,103 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+void addq(char queue[][80],char data[80],int *Front,int *Rear,int Value,int x)
+{
+int rearValue;
+if(*Rear >=x-1)
+{
+rearValue=*Rear;
+*Rear=(*Rear+1)%x;
+if(*Rear<*Front)
+{
+    strcpy(queue[*Rear],data);
+printf("%s is added in circular queue\n", data);
+}
+else
+{
+*Rear=rearValue;
+printf("Sorry the circular queue is full\n ");
+}
+}
+else
+{
+(*Rear)++;
+if(*Rear !=*Front)
+{
+strcpy(queue[*Rear],data);
+printf("%s is added in circular queue\n", data);
+}
+else
+{
+(*Rear)--;
+printf("Sorry, the circular queue is full\n");
+}
+}
+if(*Front==-1)
+*Front=*Rear;
+}
+void delq(char queue[][80],char data[80],int *Front,int *Rear,int x)
+{
+int value=0;
+if(*Front==-1)
+{
+printf("Queue is empty\n");
+}
+else
+{
+if(*Front==*Rear)
+{
+data=queue[*Front];
+*Front=*Rear=-1;
+}
+else
+{
+if(*Front >=x)
+{
+*Front=*Front%x;
+if (*Front<*Rear)
+{
+data=queue[*Front];
+(*Front)++;
+}
+
+else
+{
+if(*Front==*Rear)
+{
+data=queue[*Front];
+*Front=*Rear=-1;
+}
+}
+}
+else
+{
+data=queue[*Front];
+(*Front)++;
+}
+}
+printf("%s deleted successfully \n",data);
+}
+
+}
+void display(char queue[][80],int front,int rear,int size)
+{
+    int i;
+    printf("\n");
+    if (front > rear)
+    {
+        for (i = front; i < size; i++)
+        {
+            printf("%s ", queue[i]);
+        }
+        for (i = 0; i <= rear; i++)
+            printf("%s ", queue[i]);
+    }
+    else
+    {
+        for (i = front; i <= rear; i++)
+            printf("%s ", queue[i]);
+    }
+}
+
+//add code here 
