@@ -100,4 +100,43 @@ void display(char queue[][80],int front,int rear,int size)
     }
 }
 
-//add code here 
+int main()
+{
+char data[80],j;
+int rear,front,n=0,value,x;
+printf("Enter the size of the circular Queue: ");
+scanf("%d",&x);
+char queue[x][80];
+rear=front=-1;
+printf("\n\nCircular Queue\n");
+printf("1.Add a string into the circular queue\n");
+printf("2.Delete a string from the circular queue\n");
+printf("3.Display\n");
+printf("4.Quit\n");
+while(1)
+{
+printf("Enter your choice: ");
+scanf("%d",&n);
+switch(n)
+{
+case 1: printf("Enter the value to add: ");
+scanf("%s",data);
+addq(queue,data,&front,&rear,value,x);
+break;
+case 2: delq(queue,data,&front,&rear,x);
+break;
+case 3:
+        display(queue,front,rear,x);
+        printf("\n");
+            break;
+case 4:
+      exit(0);
+
+default:
+        printf("Wrong choice !");
+        break;
+}
+}
+return 0;
+}
+
